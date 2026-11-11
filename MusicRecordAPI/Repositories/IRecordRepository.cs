@@ -4,7 +4,7 @@ namespace MusicRecordAPI.Repositories
 {
     public interface IRecordRepository
     {
-        IEnumerable<List<Record>> GetAllRecords();
+        IEnumerable<Record> GetAllRecords();
         Record GetRecordById(int id);
         Record AddRecord(Record record);
         Record UpdateRecord(Record record);

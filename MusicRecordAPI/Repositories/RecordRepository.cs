@@ -10,10 +10,10 @@ namespace MusicRecordAPI.Repositories
             _records = records;
             _nextId = 1;
         }
-        public IEnumerable<List<Record>> GetAllRecords()
+        public IEnumerable<Record> GetAllRecords()
         {
 
-            var recordCopy = new List<List<Record>> { _records };
+            var recordCopy = new List<Record>(_records);
             return recordCopy;
         }
 
