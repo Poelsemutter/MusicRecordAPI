@@ -1,7 +1,7 @@
 ﻿using MusicRecordAPI.Models;
 namespace MusicRecordAPI.Repositories
 {
-    public class RecordRepository : IRecordRepository
+    public class RecordRepository : IRecordRepository<Record>
     {
         private readonly List<Record> _records = new List<Record>();
         private int _nextId;

@@ -1,13 +1,12 @@
-﻿using MusicRecordAPI.Models;
-namespace MusicRecordAPI.Repositories
+﻿namespace MusicRecordAPI.Repositories
 
 {
-    public interface IRecordRepository
+    public interface IRecordRepository<T>
     {
-        IEnumerable<Record> GetAllRecords();
-        Record GetRecordById(int id);
-        Record AddRecord(Record record);
-        Record UpdateRecord(Record record);
-        Record DeleteRecord(int id);
+        IEnumerable<T> GetAllRecords();
+        T GetRecordById(int id);
+        T AddRecord(T record);
+        T UpdateRecord(T record);
+        T DeleteRecord(int id);
     }
 }

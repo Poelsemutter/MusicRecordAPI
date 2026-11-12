@@ -2,6 +2,7 @@
 using MusicRecordAPI.Repositories;
 using MusicRecordAPI.Models;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicRecordAPI.Controllers
 {
@@ -10,9 +11,9 @@ namespace MusicRecordAPI.Controllers
     [EnableCors("AllowAll")]
     public class MusicRecordController : ControllerBase
     {
-        private readonly IRecordRepository _repository;
+        private readonly IRecordRepository<Record> _repository;
 
-        public MusicRecordController(IRecordRepository repository)
+        public MusicRecordController(IRecordRepository<Record> repository)
         {
             _repository = repository;
         }
