@@ -12,9 +12,21 @@ namespace MusicRecordAPI.Repositories
             _context = context;
         }
 
-        public IEnumerable<Record> GetAllRecords()
+        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null)
         {
-            return _context.Records.ToList();
+            var query = _context.Records.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                query = query.Where(r => r.Title.Contains(title));
+            }
+
+            if (!string.IsNullOrWhiteSpace(artist))
+            {
+                query = query.Where(r => r.Artist.Contains(artist));
+            }
+
+            return query.ToList();
         }
 
         public Record? GetRecordById(int id)
