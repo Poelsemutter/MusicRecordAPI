@@ -18,6 +18,7 @@ namespace MusicRecordAPI.Controllers
             _repository = repository;
         }
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Record>> GetAllRecords()
         {
             var records = _repository.GetAllRecords();
@@ -25,6 +26,8 @@ namespace MusicRecordAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Record> GetRecordById(int id)
         {
             var record = _repository.GetRecordById(id);
@@ -34,7 +37,11 @@ namespace MusicRecordAPI.Controllers
             }
             return Ok(record);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Record> UpdateRecord(Record record)
         {
             var updatedRecord = _repository.UpdateRecord(record);
@@ -44,7 +51,11 @@ namespace MusicRecordAPI.Controllers
             }
             return Ok(updatedRecord);
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Record> DeleteRecord(int id)
         {
             var deletedRecord = _repository.DeleteRecord(id);
