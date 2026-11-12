@@ -93,5 +93,16 @@ namespace MusicRecordTest
             Assert.IsNull(_repo.GetRecordById(3));
             Assert.AreEqual(4, _repo.GetAllRecords().Count());
         }
+
+        [TestMethod]
+        public void DeleteRecord_NonExistingId_ReturnsNull()
+        {
+            // Act
+            var result = _repo.DeleteRecord(999);
+
+            // Assert
+            Assert.IsNull(result);
+            Assert.AreEqual(5, _repo.GetAllRecords().Count());
+        }
     }
 }
