@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="MusicRecordAPI/MusicRecordAPI.csproj" />
+  <Project Path="MusicRecordTest/MusicRecordTest.csproj" Id="94429b35-911b-4c4e-a9ea-cdfcd783ab67" />
 </Solution>

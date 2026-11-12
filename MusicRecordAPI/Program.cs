@@ -59,10 +59,9 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwaggerUI();
-    app.UseSwagger();
 }
-
+app.UseSwaggerUI();
+app.UseSwagger();
 app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
