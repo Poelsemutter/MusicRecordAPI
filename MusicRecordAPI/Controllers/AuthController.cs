@@ -21,6 +21,22 @@ namespace MusicRecordAPI.Controllers
             _userRepository = userRepository;
             _config = config;
         }
+
+        [HttpPost("register")]
+        public IActionResult Register([FromBody] LoginDto request)
+        {
+            try
+            {
+                var user = new User(request.Username, request.Password); // Role er "User" som standard
+                _userRepository.Add(user);
+                return Created("", new { user.Id, user.Username, user.Role });
+            }
+            catch (ArgumentException ex)
+            {
+                return Conflict(ex.Message);
+            }
+        }
+
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginDto request)
         {
