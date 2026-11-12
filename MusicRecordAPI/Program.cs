@@ -33,6 +33,7 @@ builder.Services.AddSingleton<IRepository<Record>>(new RecordRepository(new List
 }));
 
 builder.Services.AddScoped<IRepository<Record>, RecordDbRepository>();
+builder.Services.AddScoped<IUserRepository, UserDbRepository>();
 builder.Services.AddDbContext<MusicRecordDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

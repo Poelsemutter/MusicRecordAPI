@@ -47,7 +47,7 @@ namespace MusicRecordAPI.Controllers
             return CreatedAtAction(nameof(GetRecordById), new { id = addedRecord.Id }, addedRecord);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

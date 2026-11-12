@@ -9,5 +9,6 @@ namespace MusicRecordAPI.Data
         {
         }
         public DbSet<Record> Records { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
