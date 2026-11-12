@@ -17,11 +17,12 @@ namespace MusicRecordAPI.Controllers
         {
             _repository = repository;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<IEnumerable<Record>> GetAllRecords()
+        public ActionResult<IEnumerable<Record>> GetAllRecords([FromQuery] string? title = null, [FromQuery] string? artist = null)
         {
-            var records = _repository.GetAllRecords();
+            var records = _repository.GetAllRecords(title, artist);
             return Ok(records);
         }
 

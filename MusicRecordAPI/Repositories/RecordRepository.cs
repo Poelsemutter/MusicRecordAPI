@@ -10,10 +10,17 @@ namespace MusicRecordAPI.Repositories
             _records = records;
             _nextId = 1;
         }
-        public IEnumerable<Record> GetAllRecords()
+        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null)
         {
-
             var recordCopy = new List<Record>(_records);
+            if (title != null)
+            {
+                recordCopy = recordCopy.Where(r => r.Title.Contains(title)).ToList();
+            }
+            if (artist != null)
+            {
+                recordCopy = recordCopy.Where(r => r.Artist.Contains(artist)).ToList();
+            }
             return recordCopy;
         }
 
