@@ -48,11 +48,12 @@ namespace MusicRecordAPI.Controllers
         }
 
         //[Authorize(Roles = "Admin")]
-        [HttpPut]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Record> UpdateRecord(Record record)
+        public ActionResult<Record> UpdateRecord(int id, Record record)
         {
+            record.Id = id;
             var updatedRecord = _repository.UpdateRecord(record);
             if (updatedRecord == null)
             {
