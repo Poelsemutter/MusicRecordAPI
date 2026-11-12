@@ -11,9 +11,9 @@ namespace MusicRecordAPI.Controllers
     [EnableCors("AllowAll")]
     public class MusicRecordController : ControllerBase
     {
-        private readonly IRecordRepository<Record> _repository;
+        private readonly IRepository<Record> _repository;
 
-        public MusicRecordController(IRecordRepository<Record> repository)
+        public MusicRecordController(IRepository<Record> repository)
         {
             _repository = repository;
         }

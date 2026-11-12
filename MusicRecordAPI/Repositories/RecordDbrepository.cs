@@ -3,7 +3,7 @@ using MusicRecordAPI.Models;
 
 namespace MusicRecordAPI.Repositories
 {
-    public class RecordDbRepository : IRecordRepository<Record>
+    public class RecordDbRepository : IRepository<Record>
     {
         private readonly MusicRecordDbContext _context;
 

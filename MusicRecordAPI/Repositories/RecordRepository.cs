@@ -1,7 +1,7 @@
 ﻿using MusicRecordAPI.Models;
 namespace MusicRecordAPI.Repositories
 {
-    public class RecordRepository : IRecordRepository<Record>
+    public class RecordRepository : IRepository<Record>
     {
         private readonly List<Record> _records = new List<Record>();
         private int _nextId;
@@ -17,18 +17,22 @@ namespace MusicRecordAPI.Repositories
             return recordCopy;
         }
 
-        public Record GetRecordById(int id)
+        public Record? GetRecordById(int id)
         {
-
-            return _records.FirstOrDefault(r => r.Id == id);
+            if (id != null)
+            {
+               return _records.FirstOrDefault(r => r.Id == id);
+            }
+            else
+                return null;
         }
-        public Record AddRecord(Record record)
+        public Record? AddRecord(Record record)
         {
             _records.Add(record);
             record.Id = _nextId++;
             return record;
         }
-        public Record UpdateRecord(Record record)
+        public Record? UpdateRecord(Record record)
         {
             var existingRecord = GetRecordById(record.Id);
             if (existingRecord != null)
@@ -37,10 +41,11 @@ namespace MusicRecordAPI.Repositories
                 existingRecord.Artist = record.Artist;
                 existingRecord.Duration = record.Duration;
                 existingRecord.PublicationYear = record.PublicationYear;
+                return existingRecord;
             }
             return null;
         }
-        public Record DeleteRecord(int id)
+        public Record? DeleteRecord(int id)
         {
             var recordToDelete = GetRecordById(id);
             if (recordToDelete != null)

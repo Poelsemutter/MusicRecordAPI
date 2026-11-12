@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
         .AllowAnyOrigin();
     });
 });
-builder.Services.AddSingleton<IRecordRepository<Record>>(new RecordRepository(new List<Record>
+builder.Services.AddSingleton<IRepository<Record>>(new RecordRepository(new List<Record>
 {
     new Record("Abbey Road", "The Beatles", 2600, 1969),
     new Record("The Dark Side of the Moon", "Pink Floyd", 2580, 1973),
@@ -32,7 +32,7 @@ builder.Services.AddSingleton<IRecordRepository<Record>>(new RecordRepository(ne
     new Record("Rumours", "Fleetwood Mac", 2400, 1977)
 }));
 
-builder.Services.AddScoped<IRecordRepository<Record>, RecordDbRepository>();
+builder.Services.AddScoped<IRepository<Record>, RecordDbRepository>();
 builder.Services.AddDbContext<MusicRecordDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
