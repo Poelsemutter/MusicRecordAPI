@@ -17,6 +17,7 @@ namespace MusicRecordAPI.Controllers
         {
             _repository = repository;
         }
+
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<IEnumerable<Record>> GetAllRecords()
@@ -38,8 +39,16 @@ namespace MusicRecordAPI.Controllers
             return Ok(record);
         }
 
-        //[Authorize(Roles = "Admin")]
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        public ActionResult<Record> AddRecord(Record record)
+        {
+            var addedRecord = _repository.AddRecord(record);
+            return CreatedAtAction(nameof(GetRecordById), new { id = addedRecord.Id }, addedRecord);
+        }
+
+        //[Authorize(Roles = "Admin")]
+        [HttpPut]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Record> UpdateRecord(Record record)
@@ -51,6 +60,7 @@ namespace MusicRecordAPI.Controllers
             }
             return Ok(updatedRecord);
         }
+
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
