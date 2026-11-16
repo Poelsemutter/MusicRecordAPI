@@ -12,7 +12,7 @@ namespace MusicRecordAPI.Repositories
             _context = context;
         }
 
-        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null, int? publicationYear = null)
+        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null, string? publicationYear = null)
         {
             var query = _context.Records.AsQueryable();
 
@@ -26,9 +26,9 @@ namespace MusicRecordAPI.Repositories
                 query = query.Where(r => r.Artist.Contains(artist));
             }
 
-            if (publicationYear.HasValue)
+            if (!string.IsNullOrWhiteSpace(publicationYear))
             {
-                query = query.Where(r => r.PublicationYear == publicationYear.Value);
+                query = query.Where(r => r.PublicationYear.ToString() == publicationYear);
             }
 
             return query.ToList();
