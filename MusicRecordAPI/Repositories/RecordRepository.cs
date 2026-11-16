@@ -10,7 +10,7 @@ namespace MusicRecordAPI.Repositories
             _records = records;
             _nextId = 1;
         }
-        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null, int? publicationYear = null)
+        public IEnumerable<Record> GetAllRecords(string? title = null, string? artist = null, string? publicationYear = null)
         {
             var recordCopy = new List<Record>(_records);
             if (title != null)
@@ -21,9 +21,9 @@ namespace MusicRecordAPI.Repositories
             {
                 recordCopy = recordCopy.Where(r => r.Artist.Contains(artist)).ToList();
             }
-            if (publicationYear.HasValue)
+            if (!string.IsNullOrWhiteSpace(publicationYear))
             {
-                recordCopy = recordCopy.Where(r => r.PublicationYear == publicationYear.Value).ToList();
+                recordCopy = recordCopy.Where(r => r.PublicationYear.ToString() == publicationYear).ToList();
             }
             return recordCopy;
         }
